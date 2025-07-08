@@ -1,0 +1,361 @@
+/* --------------------
+   General Reset & Base
+-------------------- */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: black;
+}
+
+.buttons{
+  gap: 10px;
+}
+a:not(.logout-button):not(.active-link),
+a:not(.logout-button):not(.active-link):visited,
+a:not(.logout-button):not(.active-link):hover,
+a:not(.logout-button):not(.active-link):active {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+a, a:visited, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  width: 225vh;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #ffffff;
+  color: black;
+  padding: 2rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  box-shadow:
+    4px 0 6px rgba(0, 0, 0, 0.1),
+    8px 0 12px rgba(0, 0, 0, 0.08),
+    inset -2px 0 4px rgba(0, 0, 0, 0.04);
+  border-right: 1px solid #ddd;
+}
+
+.sidebar.scrollable {
+  overflow-y: auto;
+}
+
+.sidebar .login-logo {
+  width: 160px;
+  height: auto;
+  margin-bottom: 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 1rem 0;
+}
+
+.sidebar .nav-link {
+  color: black !important;
+  font-weight: bold;
+  padding: 10px 12px;
+  display: block;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #e6f3ff;
+}
+
+.sidebar .active-link {
+  background-color: #008BB0;
+  color: white !important;
+}
+
+.sidebar .active-link:hover {
+  background-color: #027fa1;
+}
+
+.main-content {
+  margin-left: 200px;
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: #88d5ea;
+  overflow-y: auto;
+}
+
+.topbar-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.topbar-welcome {
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.topbar-comment{
+  display: flex;
+  justify-content: space-between;
+}
+.topbar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.topbar-card-box {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  display: block;
+  color: inherit;
+}
+
+a.topbar-card-box {
+  text-decoration: none !important;
+}
+
+.topbar-card-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background-color: #e6f3ff;
+}
+
+.topbar-card-title {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.topbar-card-value {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.topbar-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.topbar-inventory-box {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  height: 100%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
+}
+
+.topbar-inventory-box:hover {
+  background-color: #f0f8ff;
+}
+
+.topbar-section-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.topbar-products p {
+  margin: 2px 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.red {
+  background-color: #e74c3c;
+}
+
+.dot.yellow {
+  background-color: #f1c40f;
+}
+
+.dot.green {
+  background-color: #2ecc71;
+}
+
+.topbar-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.topbar-legend div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.topbar-placeholder {
+  color: gray;
+  font-style: italic;
+}
+
+.highlight-red {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.topbar-select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s;
+  background-color: white;
+  color: black;
+}
+
+.topbar-select:hover {
+  border-color: #5b72b5;
+}
+
+.logout-button:hover {
+  background-color: #c0392b !important;
+  color: white !important;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle-btn {
+  position: fixed;
+  top: 15px;
+  left: 210px;
+  z-index: 1100;
+  background-color: #008BB0;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 6px 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: left 0.3s ease;
+}
+
+.dashboard-container.sidebar-collapsed .sidebar-toggle-btn {
+  left: 60px;
+}
+
+/* Sidebar collapsed style */
+.sidebar.collapsed {
+  width: 60px;
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed .nav-link {
+  font-size: 0;
+  padding-left: 0;
+}
+
+.sidebar.collapsed .nav-link::before {
+  content: "•";
+  font-size: 18px;
+  margin-left: 10px;
+  color: #444;
+}
+
+/* Adjust main content when sidebar is collapsed */
+.dashboard-container.sidebar-collapsed .main-content {
+  margin-left: 60px;
+  transition: margin-left 0.3s ease;
+}
+
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.logout-select {
+  width: 10%;
+  max-width: 180px;
+  padding: 10px 12px;
+  background-color: #008BB0;
+  border: 1px solid ;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.logout-select option {
+  font-weight: normal;
+  color: #333;
+  font-style: italic;
+}
+
+.form-select{
+  width: 10%;
+  max-width: 180px;
+  padding: 10px 12px;
+  background-color: #008BB0;
+  border: 1px solid ;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-select option{
+  font-weight: normal;
+  color: #333;
+  font-style: italic;
+}
+
