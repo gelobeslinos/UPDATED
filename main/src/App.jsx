@@ -9,6 +9,10 @@ import Demand from "./pages/Demand";
 import Reports from "./pages/Reports";
 import SalesOrder from "./pages/SalesOrder";
 import PrivateRoute from "./PrivateRoute";
+import Records from "./pages/Record";
+import Forecast from './pages/Forecast';
+import ForecastChart from "./pages/ForecastChart";
+
 
 function App() {
   return (
@@ -22,6 +26,9 @@ function App() {
         <Route path="/reports" element={<PrivateRoute><Reports /></PrivateRoute>} />
         <Route path="/overview/sales" element={<PrivateRoute><Sales /></PrivateRoute>} />
         <Route path="/overview/demand" element={<PrivateRoute><Demand /></PrivateRoute>} />
+        <Route path="/record" element={<PrivateRoute><Records /></PrivateRoute>} />
+        <Route path="/forecast" element={<PrivateRoute><Forecast /></PrivateRoute>} />
+        <Route path="/forecast" element={<PrivateRoute><ForecastChart /></PrivateRoute>} />
       </Routes>
     </Router>
   );

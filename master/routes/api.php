@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ItemController;
 use App\Http\Controllers\Api\InventoryRawMatsController;
 use App\Http\Controllers\Api\PurchaseOrderController;
 use App\Http\Controllers\Api\PurchaseOrderItemController;
+use App\Http\Controllers\Api\ForecastController;
 
 Route::get('/orders/pending-count', [SalesOrderController::class, 'getPendingCount']);
 Route::get('/orders/processing-count', [SalesOrderController::class, 'getProcessingCount']);
@@ -47,3 +48,4 @@ Route::delete('/purchase-orders/{id}', [PurchaseOrderController::class, 'destroy
 Route::post('/purchase-order-items', [PurchaseOrderItemController::class, 'store']);
 Route::get('/purchase-order-items/{purchaseOrderId}', [PurchaseOrderItemController::class, 'getByPurchaseOrder']);
 
+Route::get('/historical-sales', [ForecastController::class, 'historicalSales']);

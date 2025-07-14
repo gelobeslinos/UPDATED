@@ -25,8 +25,10 @@ function SalesOrder() {
     location: '',
     customer_name: '',
     delivery_date: '',
+    date: '', 
     status: 'Pending'
   });
+
 
   useEffect(() => {
     axios.get("http://localhost:8000/api/sales-orders")
@@ -113,7 +115,10 @@ function SalesOrder() {
     return total.toFixed(2);
 };
 
-  const handleAddOrder = () => {
+  const handleAddOrder = () =>
+        {if (!newOrder.date) {
+      showMessage("Please select a valid order date.");
+      return;}
     const productsList = ['350ml', '500ml', '1L', '6L'].filter(size => newOrder.quantities[size] > 0);
     const payload = {
       customer_name: newOrder.customer_name,
@@ -122,7 +127,7 @@ function SalesOrder() {
       status: newOrder.status,
       quantities: newOrder.quantities,
       amount: calculateAmount(),
-      date: new Date().toISOString().slice(0, 10),
+      date: newOrder.date,
       products: productsList.join(', '),
       qty_350ml: newOrder.quantities['350ml'],
       qty_500ml: newOrder.quantities['500ml'],
@@ -310,6 +315,15 @@ function SalesOrder() {
             <div className="mb-2">
               <label>Delivery Date:</label>
               <input type="date" className="form-control" value={newOrder.delivery_date} onChange={(e) => setNewOrder({ ...newOrder, delivery_date: e.target.value })} />
+            </div>
+            <div className="mb-2">
+              <label>Date Ordered:</label>
+              <input
+                type="date"
+                className="form-control"
+                value={newOrder.date}
+                onChange={(e) => setNewOrder({ ...newOrder, date: e.target.value })}
+              />
             </div>
             <div className="mb-2">
               <label>Amount:</label>
