@@ -31,37 +31,43 @@ export default function ForecastChart() {
   }, []);
 
   return (
-    <div className="container mt-5">
-      <h2 className="mb-4 text-center">📈 Demand Forecast for the Next 30 Days</h2>
+    <div className="forecast-wrapper" style={{ padding: '20px', minHeight: '100vh', background: '#f9f9f9' }}>
+      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        <h2 className="mb-4 text-center" style={{ fontWeight: 'bold', fontSize: '2rem' }}>
+          📈 Demand Forecast for the Next 30 Days
+        </h2>
 
-      {error && (
-        <div className="alert alert-danger text-center" role="alert">
-          {error}
+        {error && (
+          <div className="alert alert-danger text-center" role="alert">
+            {error}
+          </div>
+        )}
+
+        {!error && forecastData.length > 0 && (
+          <div style={{ width: '100%', height: '400px' }}>
+            <ResponsiveContainer>
+              <LineChart data={forecastData} margin={{ top: 30, right: 30, left: 0, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                <YAxis />
+                <Tooltip />
+                <Legend verticalAlign="top" height={36} />
+                <Line
+                  type="monotone"
+                  dataKey="predicted_qty"
+                  stroke="#007bff"
+                  strokeWidth={3}
+                  dot={{ r: 4 }}
+                  name="Predicted Quantity"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        )}
+
+        <div className="text-center mt-4">
+          <a href="/records" className="btn btn-secondary">⬅ Back to Records</a>
         </div>
-      )}
-
-      {!error && forecastData.length > 0 && (
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={forecastData} margin={{ top: 30, right: 30, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-            <YAxis />
-            <Tooltip />
-            <Legend verticalAlign="top" height={36} />
-            <Line
-              type="monotone"
-              dataKey="predicted_qty"
-              stroke="#007bff"
-              strokeWidth={3}
-              dot={{ r: 4 }}
-              name="Predicted Quantity"
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      )}
-
-      <div className="text-center mt-4">
-        <a href="/records" className="btn btn-secondary">⬅ Back to Records</a>
       </div>
     </div>
   );

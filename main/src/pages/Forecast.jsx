@@ -11,18 +11,24 @@ export default function Forecast() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  // Automatically determine the correct API URL
+  const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:5000"
+    : "http://your-production-server.com";  // Replace with your production server if needed
+
   useEffect(() => {
-    axios.get('http://localhost:5000/forecast')
+    axios.get(`${API_BASE}/forecast`)
       .then(res => {
-        setForecastData(res.data);
+        console.log("Forecast API Response:", res.data); // Debug log
+        setForecastData(Array.isArray(res.data) ? res.data : res.data.forecast || []);
         setLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.error("Forecast API Error:", err);
         setError('⚠️ Failed to load forecast data.');
         setLoading(false);
       });
-  }, []);
+  }, [API_BASE]);
 
   return (
     <div className="container my-5">
@@ -36,12 +42,19 @@ export default function Forecast() {
           </div>
         ) : error ? (
           <div className="alert alert-danger text-center">{error}</div>
+        ) : forecastData.length === 0 ? (
+          <div className="alert alert-warning text-center">
+            ⚠️ No forecast data available.
+          </div>
         ) : (
           <>
             {/* Chart Section */}
-            <div className="mb-4" style={{ height: '400px' }}>
+            <div className="mb-5" style={{ height: '400px' }}>
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={forecastData} margin={{ top: 20, right: 20, left: 0, bottom: 70 }}>
+                <LineChart
+                  data={forecastData}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 70 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="date" angle={-45} textAnchor="end" height={80} />
                   <YAxis />
@@ -60,7 +73,7 @@ export default function Forecast() {
             </div>
 
             {/* Table Section */}
-            <div className="table-responsive">
+            <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'auto' }}>
               <table className="table table-striped table-bordered table-hover">
                 <thead className="table-dark">
                   <tr>
